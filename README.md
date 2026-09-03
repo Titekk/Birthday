@@ -1,2 +1,2 @@
 # Birthday
-One gift from someone you like
+One gift for someone you like
