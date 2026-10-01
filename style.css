@@ -1,0 +1,425 @@
+/* CSS Reset & Variable Definitions */
+:root {
+  --primary-color: #ff4757;
+  --primary-hover: #ff6b81;
+  --secondary-color: #70a1ff;
+  --secondary-hover: #1e90ff;
+  --accent-gold: #ffa502;
+  --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #31103f 50%, #4c0519 100%);
+  --text-primary: #ffffff;
+  --text-muted: #e2e8f0;
+  --card-bg: rgba(255, 255, 255, 0.12);
+  --card-border: rgba(255, 255, 255, 0.2);
+  --shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* Floating Balloons Layer */
+.floating-balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 45px;
+  height: 55px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  animation: floatUp 12s linear infinite;
+  opacity: 0.85;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-115vh) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* Main Container */
+.app-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 500px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 6vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #fff 0%, #ffeaa7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.subtitle {
+  font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  color: var(--text-muted);
+  max-width: 90%;
+  line-height: 1.4;
+}
+
+/* Gift Section */
+.gift-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  perspective: 1000px;
+}
+
+.gift-box {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+}
+
+.gift-box:hover, .gift-box:focus-visible {
+  transform: scale(1.08) rotate(2deg);
+  outline: none;
+}
+
+.gift-box:active {
+  transform: scale(0.95);
+}
+
+/* Gift Body */
+.gift-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 110px;
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.body-stripe {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 100%;
+  background: linear-gradient(135deg, #ffa502 0%, #eccc68 100%);
+}
+
+/* Gift Lid */
+.gift-lid {
+  position: absolute;
+  top: 15px;
+  left: -8px;
+  width: 156px;
+  height: 35px;
+  background: linear-gradient(135deg, #ff6b81 0%, #ff4757 100%);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.lid-stripe {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 100%;
+  background: linear-gradient(135deg, #ffa502 0%, #eccc68 100%);
+}
+
+/* Ribbon Bow */
+.ribbon-bow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 25px;
+}
+
+.ribbon-bow::before, .ribbon-bow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 26px;
+  height: 20px;
+  border: 4px solid #ffa502;
+  border-radius: 50% 50% 0 50%;
+}
+
+.ribbon-bow::before {
+  left: 0;
+  transform: rotate(-20deg);
+}
+
+.ribbon-bow::after {
+  right: 0;
+  transform: scaleX(-1) rotate(-20deg);
+}
+
+/* Gift Box Opened Animation */
+.gift-box.opened .gift-lid {
+  transform: translateY(-80px) rotate(-15deg);
+}
+
+/* Card Section */
+.card-section {
+  width: 100%;
+  transition: all 0.5s ease-out;
+}
+
+.card-section.hidden {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.card-section.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: cardAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes cardAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.birthday-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.25rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.card-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.greeting-message {
+  font-size: clamp(1rem, 4vw, 1.15rem);
+  line-height: 1.5;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sub-message {
+  font-size: clamp(0.85rem, 3.2vw, 0.95rem);
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Interactive Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px; /* Minimum touch target size for mobile accessibility */
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+}
+
+.btn-primary:hover, .btn-primary:focus-visible {
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
+  transform: translateY(-2deg);
+  outline: none;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.btn-secondary:hover, .btn-secondary:focus-visible {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2deg);
+  outline: none;
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Tablet & Desktop Layout Adaptations */
+@media (min-width: 600px) {
+  .app-container {
+    padding: 2.5rem 2rem;
+    max-width: 580px;
+  }
+
+  .gift-box {
+    width: 160px;
+    height: 160px;
+  }
+
+  .gift-body {
+    height: 125px;
+  }
+
+  .gift-lid {
+    width: 178px;
+    height: 40px;
+    left: -9px;
+  }
+
+  .birthday-card {
+    padding: 2.25rem 2rem;
+  }
+
+  .card-footer {
+    flex-direction: row;
+  }
+
+  .btn {
+    flex: 1;
+  }
+}
