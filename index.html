@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Aniversário! 🎉</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="floating-balloons" id="balloons-container" aria-hidden="true"></div>
+
+  <main class="app-container">
+    <header class="header">
+      <span class="badge">✨ Um presente especial</span>
+      <h1 class="title">Feliz Aniversário! 🎉</h1>
+      <p class="subtitle">Toque no presente abaixo para abrir sua surpresa!</p>
+    </header>
+
+    <section class="gift-section">
+      <div class="gift-box" id="gift-box" role="button" tabindex="0" aria-label="Caixa de presente surpreendente">
+        <div class="gift-lid">
+          <div class="ribbon-bow"></div>
+          <div class="lid-stripe"></div>
+        </div>
+        <div class="gift-body">
+          <div class="body-stripe"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card-section hidden" id="card-section">
+      <div class="birthday-card">
+        <div class="card-header">
+          <span class="card-icon">🎂</span>
+          <h2>Desejos Especiais</h2>
+        </div>
+        <div class="card-body">
+          <p class="greeting-message">
+            Que o seu dia seja repleto de sorrisos, momentos inesquecíveis, muita saúde, amor e alegrias sem fim!
+          </p>
+          <p class="sub-message">
+            Que todos os seus sonhos se realizem hoje e sempre. Aproveite cada segundo! ✨🎈
+          </p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" id="btn-reopen">
+            <span class="btn-icon">🎁</span> Abrir Novamente
+          </button>
+          <button class="btn btn-secondary" id="btn-confetti">
+            <span class="btn-icon">🎊</span> Mais Confetes
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
